@@ -30,7 +30,7 @@ $sticky_sidebar = in_array( 'fusion-sticky-sidebar', apply_filters( 'fusion_side
 		<?php if ( isset( Avada()->layout->sidebars['sidebar_1'] ) && Avada()->layout->sidebars['sidebar_1'] ) : ?>
 			<?php generated_dynamic_sidebar( Avada()->layout->sidebars['sidebar_1'] ); ?>
 		<?php endif; ?>
-	<?php if ( $sticky_sidebar ) : ?>
+		<?php if ( $sticky_sidebar ) : ?>
 		</div>
 	<?php endif; ?>
 </aside>

@@ -82,7 +82,11 @@ if ( 'modern' === Avada()->settings->get( 'mobile_menu_design' ) ) {
 		<?php if ( 'Left' === Avada()->settings->get( 'header_position' ) || 'Right' === Avada()->settings->get( 'header_position' ) ) : ?>
 			<?php avada_side_header(); ?>
 		<?php endif; ?>
-		<div><ul class="service-category-top-menu"><li>Prenatal Services</li><li> Childbirth Services</li><li>Postpartum/Early Parenting</li><li>Baby Services</li><li>Retailers</li><li class="call-to-action-join">JOIN OUR DIRECTORY</li></ul></div>
+		<div class="horizontal-menu-wrapper">
+			<?php dynamic_sidebar( 'service-category-top-menu' ); ?>
+			<div class="call-to-action-join"><a href="">JOIN OUR DIRECTORY</a></div>
+		</div>
+<!-- 		<div><ul class="service-category-top-menu"><li>Prenatal Services</li><li> Childbirth Services</li><li>Postpartum/Early Parenting</li><li>Baby Services</li><li>Retailers</li><li class="call-to-action-join">JOIN OUR DIRECTORY</li></ul></div> -->
 		<div id="sliders-container">
 			<?php
 			$slider_page_id = '';
