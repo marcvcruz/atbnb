@@ -180,3 +180,52 @@ function alter_order_by($query) {
 	}
 	return $query;
 }
+
+/**
+*		Add filter to modify links for service areas
+**/
+	add_filter('term_link', 'service_area_term_link', 10, 3);
+	function service_area_term_link( $url, $term, $taxonomy ) {
+
+		if (is_admin() || $taxonomy != 'service_area')
+			return $url;
+
+		$url = add_query_arg( 'service_area', $term->slug );
+		return $url;
+	}
+
+
+#add_action('pre_get_terms', 'custom_taxonomy_sort');
+function custom_taxonomy_sort($query) {
+
+    if ( is_admin() ) {
+        return;
+    }
+
+    $queryVars = $query->query_vars;
+
+    $args = [
+        'meta_key' => 'sort_order',
+        'orderby' => 'meta_value',
+        'order' => 'ASC'
+    ];
+
+    $query->query_vars = array_merge($queryVars, $args);
+}
+
+/**
+*		Add filter to use sort_order to sort items
+**/
+#add_filter( 'get_terms_orderby', 'custom_taxonomy_orderby', 10, 3 ); 
+function custom_taxonomy_orderby( $orderby, $args, $taxonomy ) {
+
+	if ( !is_admin() && $taxonomy[0] == 'service_category' )  {
+		// echo '<pre>';
+		// var_dump($taxonomy);
+		// var_dump($args);
+		// var_dump($orderby);
+		// echo '</pre>';
+		return 'meta_value';
+	}
+	return $orderby;
+}
